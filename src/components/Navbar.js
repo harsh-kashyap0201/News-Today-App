@@ -5,7 +5,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-sm navbar-dark  mb-5 fixed-top" style={{backgroundColor:"#010527"}}  >
+        <nav className="navbar navbar-expand-sm navbar-dark  mb-5 fixed-top">
         <div className="container-fluid">
             <a className="navbar-brand" href="/">News Today</a>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
