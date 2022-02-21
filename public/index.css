@@ -7,5 +7,6 @@ body{
 }
 .heading{
     color: #023e8a;
-    margin-top: 11vh;
+    margin-top: 70px;
+    position: relative;
 }
