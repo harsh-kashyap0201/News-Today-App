@@ -14,7 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Tech Stack
 - React js
 - News API
-- bootstrap 5.1
+- Bootstrap v5.1
 
 
 ## Screenshots
