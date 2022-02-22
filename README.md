@@ -14,12 +14,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Tech Stack
 - React js
 - News API
-<<<<<<< HEAD
-- Bootstrap v5.1
-=======
 - bootstrap 5.1
->>>>>>> c9d98a655d2230d09ecac2f23ba9968d24c17705
-
 
 ## Screenshots
 - Windows UI
@@ -54,8 +49,4 @@ To Start Server:
 
 To Visit App:
 
-<<<<<<< HEAD
 `localhost:3000/ideas`
-=======
-`localhost:3000/ideas`
->>>>>>> c9d98a655d2230d09ecac2f23ba9968d24c17705
