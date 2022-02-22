@@ -1,4 +1,4 @@
-import spinner from '../731.gif'
+import spinner from '../1476.gif'
 import React, { Component } from 'react'
 
 export default class Loading extends Component {

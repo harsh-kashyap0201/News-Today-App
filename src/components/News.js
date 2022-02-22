@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import Newscomponent from './Newscomponent'
 import Loading from './Loading'
 import PropTypes from 'prop-types'
+import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 export default class news extends Component {
+  
   static defaultProps = {
     category:'general',
     country:'in'
@@ -24,7 +26,7 @@ export default class news extends Component {
       this.setState({
           loading:true
       })
-      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=663d889a74b94536a8c50fbf20c3ee48&page=${this.state.page}&pageSize=12`;
+      let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.keyApi}&page=${this.state.page}&pageSize=12`;
       let data= await fetch(url);
       let parsed_data= await data.json();
       this.setState({
@@ -35,7 +37,7 @@ export default class news extends Component {
   } 
 
   async updatepage(){
-    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=663d889a74b94536a8c50fbf20c3ee48&page=${this.state.page}&pageSize=12`;
+    let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.keyApi}&page=${this.state.page}&pageSize=12`;
       this.setState({
           loading:true
       })
@@ -58,25 +60,29 @@ export default class news extends Component {
       return(
         <>
         <div className="container my-3 ">
-          <h2 className="text-center fw-bold heading"> Today's Headline - {
+          <h2 className="text-center fw-bold heading">Today's Headline - <span className="topic">{
             this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)
-          }</h2>
+          }</span>
+          </h2>
           {this.state.loading?<Loading/>:
-          <div className="row row-cols-1 row-cols-md-3 g-4">
-            {this.state.articleArray?.map((element)=>{ 
-                return <div className="col" key={element.url}>
-                <Newscomponent  title={`${element.title}`} description={`${element.description}`} imgUrl={element.urlToImage} readMoreURL={element.url} />
-                </div>
-                }
-            )}
-          </div>
+          <ResponsiveMasonry columnsCountBreakPoints={{350: 1, 750: 2, 900: 3}}>
+            <Masonry>
+              {this.state.articleArray?.map((element)=>{ 
+                  return <div className="col" key={element.url}>
+                  <Newscomponent  title={`${element.title}`} name={`${element.source.name}`}description={`${element.description}`} imgUrl={element.urlToImage} readMoreURL={element.url} />
+                  </div>
+                  }
+              )}
+            </Masonry>
+          </ResponsiveMasonry>
           }
         </div>
-        <div className="container my-2">
+        <div className="container my-5">
               <div className="d-flex justify-content-between">
-                <button type="button" disabled={(this.state.page<=1)} className="btn btn-sm" onClick={this.previousPageHandle} ><b>&#8678;Previous</b>
+                <button type="button" disabled={(this.state.page<=1)} className="btn btn-sm" onClick={this.previousPageHandle}>
+                <i className="arrow left"></i>
                 </button>
-                <button type="button" disabled={(this.state.page>=this.state.numOfPages)} className="btn btn-sm" onClick={this.nextPageHandle} ><b>Next&#x21E8;</b>
+                <button type="button" disabled={(this.state.page>=this.state.numOfPages)} className="btn btn-sm " onClick={this.nextPageHandle} ><i className="arrow right"></i>
                 </button>
               </div>
           </div>
